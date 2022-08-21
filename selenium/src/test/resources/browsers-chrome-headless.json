@@ -1,0 +1,12 @@
+{
+  "browsers": [
+    [
+      {
+        "type": "chrome",
+        "arguments": [
+          "--headless"
+        ]
+      }
+    ]
+  ]
+}

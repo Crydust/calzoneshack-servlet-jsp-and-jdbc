@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- copy this file to tomcat_base/conf/tomcat-users.xml -->
+<tomcat-users>
+	<role rolename="admin"/>
+	<user username="admin" password="admin" roles="admin"/>
+</tomcat-users>

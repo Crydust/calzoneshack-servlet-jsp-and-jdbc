@@ -1,0 +1,12 @@
+{
+  "browsers": [
+    [
+      {
+        "type": "firefox",
+        "arguments": [
+          "--headless"
+        ]
+      }
+    ]
+  ]
+}

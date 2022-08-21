@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/training">
+	<!--url="jdbc:h2:mem:test;DB_CLOSE_DELAY=-1"-->
+	<!--url="jdbc:h2:file:c:/temp/pizza"-->
+	<!--url="jdbc:h2:file:~/pizza"-->
+	<Resource
+			auth="Container"
+			type="javax.sql.DataSource"
+			name="jdbc/MyDataSource"
+			factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+			dataSourceClassName="org.h2.jdbcx.JdbcDataSource"
+			username="sa"
+			password="sa"
+			url="jdbc:h2:file:~/pizza"
+			driverClassName="org.h2.Driver"
+	/>
+	<Realm
+			className="org.apache.catalina.realm.MemoryRealm"/>
+	<CookieProcessor sameSiteCookies="strict" />
+</Context>
+

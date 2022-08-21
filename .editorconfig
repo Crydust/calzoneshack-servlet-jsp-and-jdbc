@@ -1,0 +1,22 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+root = true
+
+[*.{css,dtd,htm,html,java,js,jsp,jspf,md,properties,sql,tag,xml,xsd}]
+charset = utf-8
+indent_style = tab
+insert_final_newline = true
+tab_width = 4
+trim_trailing_whitespace = true
+ij_continuation_indent_size = 8
+
+[*.java]
+ij_java_class_count_to_use_import_on_demand = 9999
+ij_java_names_count_to_use_import_on_demand = 9999
+ij_java_imports_layout = $*,|,java.**,|,javax.**,|,org.**,|,com.**,|,*
+
+[*.md]
+trim_trailing_whitespace = false
+
+[*.properties]
+charset = latin1

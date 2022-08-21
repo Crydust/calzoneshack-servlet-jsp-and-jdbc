@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="Custom Rules"
+		 xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
+
+	<description>PMD static code analysis rule set</description>
+
+	<!--
+	https://pmd.github.io/latest/pmd_rules_java.html
+	http://maven.apache.org/plugins/maven-pmd-plugin/pmd-mojo.html
+	-->
+
+	<exclude-pattern>.*/demo/.*</exclude-pattern>
+
+	<rule ref="category/java/bestpractices.xml">
+		<exclude name="GuardLogStatement"/>
+		<exclude name="JUnit5TestShouldBePackagePrivate"/>
+		<exclude name="JUnitAssertionsShouldIncludeMessage"/>
+		<exclude name="JUnitTestContainsTooManyAsserts"/><!-- disabled because it flags assertAll -->
+		<exclude name="UnusedPrivateField"/><!-- to allow for unused LOGGER fields -->
+	</rule>
+	<rule ref="category/java/errorprone.xml">
+		<exclude name="AvoidDuplicateLiterals"/>
+		<exclude name="AvoidLiteralsInIfCondition"/>
+	</rule>
+	<rule ref="category/java/design.xml">
+		<exclude name="AvoidThrowingRawExceptionTypes"/>
+		<exclude name="CognitiveComplexity"/>
+		<exclude name="LawOfDemeter"/>
+		<exclude name="LoosePackageCoupling"/>
+		<exclude name="NPathComplexity"/><!-- later -->
+	</rule>
+
+	<rule ref="category/java/design.xml/CyclomaticComplexity">
+		<properties>
+			<property name="classReportLevel" value="80" />
+			<property name="methodReportLevel" value="15" />
+			<property name="cycloOptions" value="ignoreBooleanPaths" />
+		</properties>
+	</rule>
+
+	<rule ref="category/java/errorprone.xml/TestClassWithoutTestCases">
+		<properties>
+			<!--
+			The default value would falsely accuse classes with names that start with "Test".
+			https://docs.pmd-code.org/latest/pmd_rules_java_errorprone.html#testclasswithouttestcases
+			https://github.com/pmd/pmd/blob/master/pmd-java/src/main/java/net/sourceforge/pmd/lang/java/rule/errorprone/TestClassWithoutTestCasesRule.java
+			<property name="testClassPattern" value="(?:.*\.)?Test[^\.]*$|^(?:.*\.)?.*Tests?$|^(?:.*\.)?.*TestCase$" />
+			-->
+			<property name="testClassPattern" value="^.*(?:Tests?|IT|TestCase)$" />
+		</properties>
+	</rule>
+
+	<rule ref="category/java/design.xml/AvoidDeeplyNestedIfStmts">
+		<properties>
+			<property name="problemDepth" value="4" />
+		</properties>
+	</rule>
+
+	<rule ref="category/java/design.xml/TooManyMethods">
+		<properties>
+			<property name="maxmethods" value="20" />
+		</properties>
+	</rule>
+</ruleset>

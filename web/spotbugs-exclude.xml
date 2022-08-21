@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter
+		xmlns="https://github.com/spotbugs/filter/3.0.0"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="https://github.com/spotbugs/filter/3.0.0 https://raw.githubusercontent.com/spotbugs/spotbugs/3.1.0/spotbugs/etc/findbugsfilter.xsd">
+	<Match>
+		<Or>
+			<Bug pattern="EXS_EXCEPTION_SOFTENING_NO_CONSTRAINTS"/>
+			<Bug pattern="PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS"/>
+			<Bug pattern="CC_CYCLOMATIC_COMPLEXITY"/>
+
+			<!-- The ignored bugs below MIGHT be worth revisiting! -->
+			<Bug pattern="URL_REWRITING"/>
+			<Bug pattern="XSS_SERVLET"/>
+			<Bug pattern="USBR_UNNECESSARY_STORE_BEFORE_RETURN"/>
+			<Bug pattern="UNVALIDATED_REDIRECT"/>
+			<Bug pattern="SQL_INJECTION_JDBC"/>
+			<Bug pattern="ODR_OPEN_DATABASE_RESOURCE"/>
+			<Bug pattern="EI_EXPOSE_REP"/>
+			<Bug pattern="EI_EXPOSE_REP2"/>
+			<Bug pattern="DLC_DUBIOUS_LIST_COLLECTION"/>
+			<Bug pattern="HARD_CODE_PASSWORD"/>
+			<Bug pattern="NP_NULL_PARAM_DEREF"/>
+			<Bug pattern="UNSAFE_HASH_EQUALS"/>
+		</Or>
+	</Match>
+	<Match>
+		<Class name="~.*\..*(Test|IT)"/>
+		<Or>
+			<Bug pattern="CE_CLASS_ENVY"/>
+			<Bug pattern="MDM_RANDOM_SEED"/>
+			<Bug pattern="PREDICTABLE_RANDOM"/>
+		</Or>
+	</Match>
+	<Match>
+		<Class name="~.*\..*_jsp"/>
+		<Or>
+			<!-- The ignored bugs below MIGHT be worth revisiting! -->
+			<Bug pattern="ENMI_EQUALS_ON_ENUM"/>
+			<Bug pattern="EXS_EXCEPTION_SOFTENING_RETURN_FALSE"/>
+			<Bug pattern="UP_UNUSED_PARAMETER"/>
+			<Bug pattern="XSS_JSP_PRINT"/>
+		</Or>
+	</Match>
+</FindBugsFilter>
