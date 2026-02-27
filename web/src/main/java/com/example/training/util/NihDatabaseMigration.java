@@ -69,7 +69,8 @@ public class NihDatabaseMigration {
 			 PreparedStatement ps = con.prepareStatement(sql)) {
 			int parameterIndex = 1;
 			for (String migration : migrations) {
-				ps.setString(parameterIndex++, migration);
+				ps.setString(parameterIndex, migration);
+				parameterIndex++;
 			}
 			try (ResultSet rs = ps.executeQuery()) {
 				return rs.next();
@@ -153,7 +154,7 @@ public class NihDatabaseMigration {
 					} catch (SQLException e) {
 						LOGGER.severe("Could not apply migration '%s'".formatted(migration));
 						state = MigrationState.FAILED;
-						throw e;
+						throw new RuntimeException(e);
 					} finally {
 						insertMigrationState(migration, currentHash, state, ds);
 					}

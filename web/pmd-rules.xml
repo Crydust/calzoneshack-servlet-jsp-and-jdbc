@@ -16,8 +16,7 @@
 	<rule ref="category/java/bestpractices.xml">
 		<exclude name="GuardLogStatement"/>
 		<exclude name="JUnit5TestShouldBePackagePrivate"/>
-		<exclude name="JUnitAssertionsShouldIncludeMessage"/>
-		<exclude name="JUnitTestContainsTooManyAsserts"/><!-- disabled because it flags assertAll -->
+		<exclude name="UnitTestAssertionsShouldIncludeMessage"/>
 		<exclude name="UnusedPrivateField"/><!-- to allow for unused LOGGER fields -->
 	</rule>
 	<rule ref="category/java/errorprone.xml">

@@ -24,6 +24,7 @@ import javax.sql.DataSource;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+@SuppressWarnings({"PMD.CouplingBetweenObjects"})
 public final class Database {
 	public final DataSource ds;
 
@@ -163,7 +164,8 @@ public final class Database {
 			 PreparedStatement ps = con.prepareStatement(sql)) {
 			int parameterIndex = 1;
 			for (UUID id : ids) {
-				ps.setObject(parameterIndex++, id);
+				ps.setObject(parameterIndex, id);
+				parameterIndex++;
 			}
 			try (ResultSet rs = ps.executeQuery()) {
 				while (rs.next()) {

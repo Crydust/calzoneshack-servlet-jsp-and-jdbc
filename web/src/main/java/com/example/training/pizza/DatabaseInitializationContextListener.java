@@ -34,7 +34,7 @@ public class DatabaseInitializationContextListener implements ServletContextList
 		deregisterAllJdbcDrivers(sce);
 	}
 
-	@SuppressWarnings({"PMD.CloseResource", "PMD.EmptyCatchBlock"})
+	@SuppressWarnings({"PMD.EmptyCatchBlock"})
 	private static void shutdownH2Database(DataSource ds) {
 		try {
 			Connection con = ds.getConnection();
