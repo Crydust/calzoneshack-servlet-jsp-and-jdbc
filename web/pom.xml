@@ -76,23 +76,23 @@
 			<plugins>
 				<plugin>
 					<artifactId>maven-resources-plugin</artifactId>
-					<version>3.3.1</version>
-				</plugin>
-				<plugin>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.14.0</version>
-				</plugin>
-				<plugin>
-					<artifactId>maven-surefire-plugin</artifactId>
-					<version>3.5.3</version>
-				</plugin>
-				<plugin>
-					<artifactId>maven-war-plugin</artifactId>
 					<version>3.4.0</version>
 				</plugin>
 				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.15.0</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>3.5.5</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>3.5.1</version>
+				</plugin>
+				<plugin>
 					<artifactId>maven-failsafe-plugin</artifactId>
-					<version>3.2.5</version>
+					<version>3.5.5</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -149,16 +149,16 @@
 							<dependency>
 								<groupId>com.puppycrawl.tools</groupId>
 								<artifactId>checkstyle</artifactId>
-								<version>10.18.0</version>
+								<version>13.2.0</version>
 							</dependency>
 						</dependencies>
 						<executions>
 							<execution>
-								<id>validate</id>
+								<id>check</id>
 								<goals>
 									<goal>check</goal>
 								</goals>
-								<phase>validate</phase>
+								<phase>verify</phase>
 							</execution>
 						</executions>
 					</plugin>
@@ -180,14 +180,14 @@
 								<goals>
 									<goal>check</goal>
 								</goals>
-								<phase>validate</phase>
+								<phase>verify</phase>
 							</execution>
 						</executions>
 					</plugin>
 					<plugin>
 						<groupId>com.github.spotbugs</groupId>
 						<artifactId>spotbugs-maven-plugin</artifactId>
-						<version>4.9.4.2</version>
+						<version>4.9.8.2</version>
 						<configuration>
 							<effort>Max</effort>
 							<excludeFilterFile>spotbugs-exclude.xml</excludeFilterFile>
@@ -198,7 +198,7 @@
 								<plugin>
 									<groupId>com.mebigfatguy.sb-contrib</groupId>
 									<artifactId>sb-contrib</artifactId>
-									<version>7.6.4</version>
+									<version>7.7.4</version>
 								</plugin>
 								<plugin>
 									<groupId>jp.skypencil.findbugs.slf4j</groupId>
@@ -208,7 +208,7 @@
 								<plugin>
 									<groupId>com.h3xstream.findsecbugs</groupId>
 									<artifactId>findsecbugs-plugin</artifactId>
-									<version>1.12.0</version>
+									<version>1.14.0</version>
 								</plugin>
 							</plugins>
 						</configuration>
@@ -218,7 +218,7 @@
 								<goals>
 									<goal>check</goal>
 								</goals>
-								<phase>prepare-package</phase>
+								<phase>verify</phase>
 							</execution>
 						</executions>
 					</plugin>

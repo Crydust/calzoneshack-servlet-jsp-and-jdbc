@@ -40,6 +40,8 @@
 			<Bug pattern="EXS_EXCEPTION_SOFTENING_RETURN_FALSE"/>
 			<Bug pattern="UP_UNUSED_PARAMETER"/>
 			<Bug pattern="XSS_JSP_PRINT"/>
+			<Bug pattern="MUI_RETURNING_MUTABLE_STATIC_MAP"/>
+			<Bug pattern="SUI_RETURNING_MUTABLE_STATIC_MAP"/>
 		</Or>
 	</Match>
 </FindBugsFilter>
