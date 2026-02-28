@@ -2,12 +2,12 @@
 
 ## TLDR How do I run the web site?
 
-Download tomcat 9 and maven 3 if you haven't already.
-I'll assume you have tomcat installed here: `c:\Workspace\opt\apache-tomcat-9.0.73`.
+Download tomcat 11 and maven 3 if you haven't already.
+I'll assume you have tomcat installed here: `c:\Workspace\opt\apache-tomcat-11.0.18`.
 ```
 cd /d c:\Workspace
 git clone (insert url here)
-cd /d c:\Workspace\opt\apache-tomcat-9.0.73\bin
+cd /d c:\Workspace\opt\apache-tomcat-11.0.18\bin
 makebase.bat c:\Workspace\calzoneshack\tomcat
 cd /d c:\Workspace\calzoneshack
 mvn clean package
@@ -17,31 +17,31 @@ Intellij > Hamburger > Open > c:\Workspace\calzoneshack\pom.xml
 
 Create run configuration:
 * Tomcat Server Local
-* Tomcat home: c:\Workspace\opt\apache-tomcat-9.0.73
+* Tomcat home: c:\Workspace\opt\apache-tomcat-11.0.18
 * Tomcat base directory: c:\Workspace\calzoneshack\tomcat
 * Deployment > Deploy at the server startup > + > web:war exploded
 * Application context: /training
 
-When running the selenium tests in intellij I recommend adding these VM options to your run configuration: `-Dwdm.defaultBrowser=FIREFOX -Dtraining.baseUrl=http://localhost:8080/training`
+When running the selenium tests in intellij I recommend adding these VM options to your run configuration: `-Dtraining.baseUrl=http://localhost:8889/training`
 
 ## What you need for this training
 
-* Java 17  
+* Java 25  
 https://adoptium.net
 * Maven 3  
 https://www.apache.org
-* Tomcat 9 (not 10)  
+* Tomcat 11  
 You need the one under Binary Distributions - Core  
 https://tomcat.apache.org
 * A copy of the specs
-  * Servlet 4.0  
-  https://www.jcp.org/en/jsr/detail?id=369
-  * JSP 2.3  
-  https://www.jcp.org/en/jsr/detail?id=245
-  * JSTL 1.2  
-  https://www.jcp.org/en/jsr/detail?id=52
-  * Expression language 3.0 (optional)  
-  https://www.jcp.org/en/jsr/detail?id=341
+  * Servlet 6.1  
+  https://jakarta.ee/specifications/servlet/6.1/
+  * JSP 3.1  
+  https://jakarta.ee/specifications/pages/3.1/
+  * JSTL 3.0  
+  https://jakarta.ee/specifications/tags/3.0/
+  * Expression language 6.0
+  https://jakarta.ee/specifications/expression-language/6.0/
 
 ## Structure of a maven war project
 
@@ -79,7 +79,7 @@ If you rename it to `.zip` and look inside the file you'll find this structure.
 | index.html, favicon.ico, ... | Directly accessible static files are outside the META-INF and WEB-INF folder         |
 | META-INF/context.xml         | Tomcat specific configuration file. Allows the context path to be configured.        |
 | WEB-INF/web.xml              | Deployment descriptor. This where we configure filters, servlets, authentication ... |
-| WEB-INF/classes              | Java sources are compiled and placed here as class files. Resources are copied here. |
+| WEB-INF/classes              | Java sources are compiled and placed here as class files. Resources are copied here. |
 | WEB-INF/lib                  | Dependencies are copied here. These are jar files.                                   |
 
 Example of META-INF/context.xml
@@ -95,18 +95,17 @@ http://localhost/my-context-path/index.html
 Example of WEB-INF/web.xml
 ```
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
-  version="4.0">
+  xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+  version="6.0">
     <context-param>
         <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
         <param-value>messages</param-value>
     </context-param>
     <servlet>
        <servlet-name>catalog</servlet-name>
-       <servlet-class>com.example.CatalogServlet
-           </servlet-class>
+       <servlet-class>com.example.CatalogServlet</servlet-class>
        <init-param>
            <param-name>catalog</param-name>
            <param-value>Spring</param-value>

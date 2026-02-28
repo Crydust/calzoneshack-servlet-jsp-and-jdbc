@@ -14,7 +14,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -108,11 +107,7 @@ public class PizzaServletPage {
 		WebElement removeButton = removeButtons.get(index);
 		// click ignores formaction attribute
 		//removeButton.click();
-		if (driver instanceof HtmlUnitDriver) {
-			removeButton.submit();
-		} else {
-			removeButton.sendKeys(Keys.ENTER);
-		}
+		removeButton.sendKeys(Keys.ENTER);
 		wait.until(stalenessOf(removeButton));
 		return new PizzaServletPage(driver).checkPageIsLoaded();
 	}
@@ -147,6 +142,7 @@ public class PizzaServletPage {
 		return new PizzaServletPage(driver).checkPageIsLoaded();
 	}
 
-	public record PizzaValue(String size, String crust, String sauce, Set<String> toppings){}
+	public record PizzaValue(String size, String crust, String sauce, Set<String> toppings) {
+	}
 
 }

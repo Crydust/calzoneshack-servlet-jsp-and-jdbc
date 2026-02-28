@@ -12,7 +12,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 
-@ExtendWith(HtmlUnitSeleniumJupiter.class)
+import io.github.bonigarcia.seljup.SeleniumJupiter;
+
+@ExtendWith(SeleniumJupiter.class)
 class HelloServletIT {
 
 	@TestTemplate

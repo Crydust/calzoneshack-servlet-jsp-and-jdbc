@@ -12,7 +12,9 @@ import org.openqa.selenium.WebDriver;
 
 import com.example.training.demo.PizzaServletPage.PizzaValue;
 
-@ExtendWith(HtmlUnitSeleniumJupiter.class)
+import io.github.bonigarcia.seljup.SeleniumJupiter;
+
+@ExtendWith(SeleniumJupiter.class)
 class PizzaServletIT {
 
 	@TestTemplate

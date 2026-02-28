@@ -8,9 +8,9 @@ import java.sql.Statement;
 import java.util.Collections;
 import java.util.List;
 
-import javax.annotation.Resource;
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
+import jakarta.annotation.Resource;
+import jakarta.servlet.ServletContextEvent;
+import jakarta.servlet.ServletContextListener;
 import javax.sql.DataSource;
 
 import com.example.training.util.NihDatabaseMigration;
