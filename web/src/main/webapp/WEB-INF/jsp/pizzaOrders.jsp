@@ -13,6 +13,9 @@
 <h1>PizzaOrdersServlet</h1>
 
 <c:url var="formAction" value="/PizzaOrdersServlet"/>
+<c:url var="removeFormAction" value="/PizzaOrdersServlet">
+	<c:param name="button" value="remove"/>
+</c:url>
 
 <form method='POST' action='${fn:escapeXml(formAction)}'>
 
@@ -28,6 +31,7 @@
 					<th><c:out value="${null}"><fmt:message key="customer.lastname"/></c:out></th>
 					<th><c:out value="${null}"><fmt:message key="customer.email"/></c:out></th>
 					<th>pizzas</th>
+					<th>actions</th>
 				</tr>
 				<c:forEach var="order" items="${model.orders()}">
 					<tr>
@@ -63,6 +67,12 @@
 									</tr>
 								</c:forEach>
 							</table>
+						</td>
+						<td>
+							<button type='submit' name='id' value='${fn:escapeXml(order.id)}'
+									formaction='${fn:escapeXml(removeFormAction)}'>
+								Remove
+							</button>
 						</td>
 					</tr>
 				</c:forEach>

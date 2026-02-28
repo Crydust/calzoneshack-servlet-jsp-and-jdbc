@@ -1,8 +1,11 @@
 package com.example.training.pizza;
 
+import static java.util.Objects.requireNonNull;
+
 import java.io.IOException;
 import java.io.Serial;
 import java.util.List;
+import java.util.UUID;
 
 import javax.sql.DataSource;
 
@@ -25,6 +28,10 @@ public class PizzaOrdersServlet extends HttpServlet {
 		request.getRequestDispatcher(JSP).forward(request, response);
 	}
 
+	private static void redirectToGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + URLPATTERN));
+	}
+
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html; charset=UTF-8");
@@ -36,6 +43,28 @@ public class PizzaOrdersServlet extends HttpServlet {
 
 		request.setAttribute("model", model);
 		forwardToJsp(request, response);
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String button = request.getParameter("button");
+		if (button == null) {
+			redirectToGet(request, response);
+			return;
+		}
+		switch (button) {
+			case "remove" -> handleRemove(request);
+			default -> throw new IllegalArgumentException("Unknown button '" + button + "'");
+		}
+		redirectToGet(request, response);
+	}
+
+	private void handleRemove(HttpServletRequest request) {
+		requireNonNull(request);
+		final String idString = request.getParameter("id");
+		final UUID id = UUID.fromString(requireNonNull(idString));
+		final Database database = new Database(ds);
+		database.removeOrderById(id);
 	}
 
 }

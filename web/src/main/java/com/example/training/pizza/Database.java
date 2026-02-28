@@ -336,6 +336,34 @@ public final class Database {
 		}
 	}
 
+	public void removeOrderById(UUID orderId) {
+		requireNonNull(orderId);
+		try (Connection con = ds.getConnection()) {
+			con.setAutoCommit(false);
+
+			try (PreparedStatement ps = con.prepareStatement("delete from pizza_topping where pizza_id in (" +
+					"select id from pizza where order_id = ?" +
+					")\n")) {
+				ps.setObject(1, orderId);
+				ps.executeUpdate();
+			}
+
+			try (PreparedStatement ps = con.prepareStatement("delete from pizza where order_id = ?\n")) {
+				ps.setObject(1, orderId);
+				ps.executeUpdate();
+			}
+
+			try (PreparedStatement ps = con.prepareStatement("delete from \"ORDER\" where id = ?\n")) {
+				ps.setObject(1, orderId);
+				ps.executeUpdate();
+			}
+
+			con.commit();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
 	private static final class ObjectMapperHolder {
 		private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
