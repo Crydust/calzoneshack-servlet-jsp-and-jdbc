@@ -58,11 +58,6 @@ public final class NihStringUtil {
 	 * <a href="https://stackoverflow.com/questions/26177749/how-can-i-append-a-query-parameter-to-an-existing-url">How
 	 * can I append a query parameter to an existing URL?</a> for better
 	 * approaches to this problem</p>
-	 *
-	 * @param url
-	 * @param key
-	 * @param value
-	 * @return
 	 */
 	public static String addAttributeToQuery(String url, String key, String value) {
 		if (url == null) {

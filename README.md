@@ -1,6 +1,6 @@
 # Servlet, Jsp and Jdbc training
 
-## TLDR How do I run the web site?
+## TLDR How do I run the website?
 
 Download tomcat 11 and maven 3 if you haven't already.
 I'll assume you have tomcat installed here: `c:\Workspace\opt\apache-tomcat-11.0.18`.

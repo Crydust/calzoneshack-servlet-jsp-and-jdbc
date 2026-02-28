@@ -95,7 +95,7 @@ public class InputGroup {
 
 	/**
 	 * Select all input that have a label with text matching the argument.
-	 * That is, when given "Bar" this would select a input like:
+	 * That is, when given "Bar" this would select an input like:
 	 *
 	 * <ul>
 	 *     <li><code>&lt;input type="checkbox" name="foo" value="bar" id="foo_bar"&gt;&lt;label for="foo_bar" &gt;Bar&lt;/label&gt;</code></li>
@@ -129,7 +129,7 @@ public class InputGroup {
 
 	/**
 	 * Select all inputs that have a value matching the argument.
-	 * That is, when given "bar" this would select a input like:
+	 * That is, when given "bar" this would select an input like:
 	 *
 	 * <ul>
 	 *     <li><code>&lt;input type="checkbox" name="foo" value="bar" id="foo_bar"&gt;&lt;label for="foo_bar" &gt;Bar&lt;/label&gt;</code></li>
@@ -296,7 +296,7 @@ public class InputGroup {
 			if (labels.isEmpty()) {
 				labels = input.findElements(By.xpath("./ancestor::label"));
 			}
-			inputWithLabels.add(new InputWithLabel(input, labels.isEmpty() ? null : labels.get(0)));
+			inputWithLabels.add(new InputWithLabel(input, labels.isEmpty() ? null : labels.getFirst()));
 		}
 		return inputWithLabels;
 	}
@@ -312,7 +312,7 @@ public class InputGroup {
 				.distinct()
 				.toList();
 		final int partitionSize = 20;
-		final WebElement firstInput = inputs.get(0);
+		final WebElement firstInput = inputs.getFirst();
 		for (int i = 0; i < inputIds.size(); i += partitionSize) {
 			final String xpath = inputIds.subList(i, Math.min(i + partitionSize, inputs.size())).stream()
 					.map(Quotes::escape)
