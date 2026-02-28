@@ -76,6 +76,16 @@
 			<artifactId>selenium-jupiter</artifactId>
 			<version>6.3.1</version>
 			<scope>test</scope>
+			<exclusions>
+				<!--
+				Exclude lombok to avoid error in intellij (oddly, this error isn't present with maven)
+				java.lang.ExceptionInInitializerError: com.sun.tools.javac.code.TypeTag :: UNKNOWN
+				-->
+				<exclusion>
+					<groupId>org.projectlombok</groupId>
+					<artifactId>lombok</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
